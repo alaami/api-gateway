@@ -1,0 +1,21 @@
+{
+  "name": "apigateway",
+  "version": 2,
+    "builds": [
+        {
+            "src": "index.js",
+            "use":"@now/node-server"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "index.js"
+        }
+    ],
+    "env": {
+    "MONGODB_URI": "@my-mongodb-uri",
+    "ARTICLE_BASE_URL":"@articleapi-url"
+  }
+}
+
