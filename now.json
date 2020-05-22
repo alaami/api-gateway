@@ -15,7 +15,9 @@
     ],
     "env": {
     "MONGODB_URI": "@my-mongodb-uri",
-    "ARTICLE_BASE_URL":"@articleapi-url"
+    "ARTICLE_BASE_URL":"@articleapi-url",
+    "AUTH_DOMAIN":"@apigateway-auth-domain",
+    "AUDIENCE":"@apigateway-articleapi-url"
   }
 }
 
