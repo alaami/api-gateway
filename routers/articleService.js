@@ -10,7 +10,7 @@ const api = apiAdapter(BASE_URL)
 // more routes for our API will happen here
 router.route('/articles')
     // create article (accessed at POST )
-    .post(function(req, res) {
+    .post(isAuthorized,jwtAuthz(['create:articles']),function(req, res) {
       api.post(req.path, req.body).then(resp => {
         res.json(resp.data)
       })
@@ -23,23 +23,23 @@ router.route('/articles')
 
     // route ended with 
     router.route('/article/:article_id')
-  .get(isAuthorized,jwtAuthz(['read:articles']),function(req, res) {
+    .get(isAuthorized,jwtAuthz(['read:articles']),function(req, res) {
           api.get(req.path).then(resp => {
 		  res.send(resp.data)
 		})
         
     })
     // update
-    .put(function(req, res) {
+    .put(isAuthorized,jwtAuthz(['edit:articles']),function(req, res) {
 
       api.put(req.path, req.body).then(resp => {
         res.json(resp.data)
       })
     })
         // Delete route
-        .delete(function(req, res) {
-          api.delete(req.path, req.params).then(resp => {
-            res.json(resp.data)
-          })
+    .delete(isAuthorized,jwtAuthz(['delete:articles']),function(req, res) {
+      api.delete(req.path, req.params).then(resp => {
+        res.json(resp.data)
+      })
     });
 module.exports = router
